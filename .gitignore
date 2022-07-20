@@ -154,3 +154,29 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+.gitignore
+.idea/.gitignore
+.idea/find_it.iml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+itfinder/__init__.py
+itfinder/itfinder/__init__.py
+itfinder/itfinder/asgi.py
+itfinder/itfinder/settings.py
+itfinder/itfinder/urls.py
+itfinder/itfinder/wsgi.py
+itfinder/manage.py
+itfinder/projects/__init__.py
+itfinder/projects/admin.py
+itfinder/projects/apps.py
+itfinder/projects/migrations/0001_initial.py
+itfinder/projects/migrations/0002_tag_project_total_votes_project_votes_ratio_review_and_more.py
+itfinder/projects/migrations/__init__.py
+itfinder/projects/models.py
+itfinder/projects/templates/
+itfinder/projects/tests.py
+itfinder/projects/urls.py
+itfinder/projects/views.py
+requirements.txt
+.idea/vcs.xml
