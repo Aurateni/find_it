@@ -1,5 +1,7 @@
 from django.db import models
 import uuid
+from django.utils.text import slugify
+from users.models import Profile
 
 
 class Tag(models.Model):
@@ -8,11 +10,17 @@ class Tag(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
+    def save(self, *args, **kwargs):
+        value = self.name
+        self.slug = slugify(value, allow_unicode=True)
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.name
 
 
 class Project(models.Model):
+    owner = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     slug = models.SlugField()
     description = models.TextField(null=True, blank=True)
@@ -43,3 +51,4 @@ class Review(models.Model):
     def __str__(self):
         return self.value
 # Create your models here.
+
