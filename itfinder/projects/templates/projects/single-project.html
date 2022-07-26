@@ -51,7 +51,7 @@
                     <p>Вы не можете оставлять отзывы к собственным проектам</p>
 
                     {% elif request.user.is_authenticated %}
-                    <form class="form" action="{% url 'project' project.id %}" method="POST">
+                    <form class="form" action="{% url 'project' project.slug %}" method="POST">
                         {% csrf_token %}
                         {% for field in form %}
                         <div class="form__field">
@@ -75,7 +75,7 @@
 
 
                             <div class="comment__details">
-                                <a href="{% url 'user-profile' review.owner.id  %}"
+                                <a href="{% url 'user-profile' review.owner %}"
                                     class="comment__author">{{ review.owner.name }}</a>
                                 <p class="comment__info">{{ review.body|linebreaksbr }}</p>
                             </div>

@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Profile, Skill
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageForm
+from .utils import searchProfiles, paginateProfiles
 
 
 def loginUser(request):
@@ -66,15 +67,17 @@ def registerUser(request):
 
 
 def profiles(request):
-    profiles = Profile.objects.all()
-    context = {'profiles': profiles}
+    profiles, search_query = searchProfiles(request)
+    custom_range, profiles = paginateProfiles(request, profiles, 6)
+    context = {'profiles': profiles, 'search_query': search_query,
+               'custom_range': custom_range}
     return render(request, 'users/profiles.html', context)
 
 
 # Create your views here.
 
-def userProfile(request, pk):
-    profile = Profile.objects.get(id=pk)
+def userProfile(request, username):
+    profile = Profile.objects.get(username=username)
     main_skills = profile.skills.all()[:2]
     extra_skills = profile.skills.all()[2:]
     context = {'profile': profile, 'main_skills': main_skills,
