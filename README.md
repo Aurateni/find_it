@@ -1,3 +1,6 @@
-# find_it
+# ProjectsSysRQ
 
 Портал на Django
+
+
+https://romasysrq.pythonanywhere.com
